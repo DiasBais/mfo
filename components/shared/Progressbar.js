@@ -136,20 +136,21 @@ class ProgressBar extends Component {
       open() {
         this.setState({ showModal: true });
       };
-      handleChangeMoney(event) {
+      async handleChangeMoney(event) {
         this.setState({
           money: event.target.value,
-      });
-        this.props.changingMoney(event.target.value);
+        });
+        await this.props.changingMoney(event.target.value);
       }
-      handleChangeDay(event) {
+      async handleChangeDay(event) {
         this.setState({
           day: event.target.value
-       });
-        if(event.target.value>30) {
-          this.props.changingDay(30)
-        }else {
-        this.props.changingDay(event.target.value);}
+        });
+        if (event.target.value>30) {
+          await this.props.changingDay(30)
+        } else {
+          await this.props.changingDay(event.target.value);
+        }
 
       // this.props.changingDay(event.target.value);
       }

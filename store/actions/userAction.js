@@ -54,11 +54,11 @@ export const loginUser = (values) => dispatch => {
         throw errmess;
       })
     .then(response => response.json())
-    .then(data => {
+    .then(async data => {
       cookie.set('token', data.access_token, {expires: 2})
       var users = dispatch(fetchCurrentUser())
       console.log(users)
-      dispatch({ type: 'SET_CURRENT_USER', payload: 'user' })
+      await function () { dispatch({ type: 'SET_CURRENT_USER', payload: 'user' }) }
       Router.push('/cabinet/loans')
     })
     .catch((error) => {
