@@ -57,6 +57,7 @@ export const loginUser = (values) => dispatch => {
     .then(async data => {
       cookie.set('token', data.access_token, {expires: 2})
       var users = dispatch(fetchCurrentUser())
+      console.log('CHEEEEEEEEECK')
       console.log(users)
       await function () { return dispatch({ type: 'SET_CURRENT_USER', payload: 'user' }) }
       setTimeout(() => { Router.push('/cabinet/loans') }, 2000)
