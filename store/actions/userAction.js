@@ -58,13 +58,13 @@ export const loginUser = (values) => dispatch => {
       cookie.set('token', data.access_token, {expires: 2})
       var users = dispatch(fetchCurrentUser())
       console.log(users)
-      await function () { dispatch({ type: 'SET_CURRENT_USER', payload: 'user' }) }
-      Router.push('/cabinet/loans')
+      await function () { return dispatch({ type: 'SET_CURRENT_USER', payload: 'user' }) }
+      setTimeout(() => { Router.push('/cabinet/loans') }, 2000)
     })
     .catch((error) => {
       if(error.message.includes('400')) {
         dispatch({type: 'FAILED_LOGIN', payload: 'Неправильный ИИН или пароль'})
-      }else {
+      } else {
         dispatch({type: 'FAILED_LOGIN', payload: error.message})
       }
     })
